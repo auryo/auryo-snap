@@ -1,0 +1,62 @@
+name: auryo
+version: 2.0.0-beta
+summary: A SoundCloud client for your desktop
+description: Listen to SoundCloud® from the comfort of your desktop. Use keyboard shortcuts to navigate through your music. Be more productive.
+confinement: strict
+grade: stable
+architectures:
+  - amd64
+apps:
+  auryo:
+    command: command.sh
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
+      PATH: '$SNAP/usr/sbin:$SNAP/usr/bin:$SNAP/sbin:$SNAP/bin:$PATH'
+      LD_LIBRARY_PATH: '$SNAP_LIBRARY_PATH:$SNAP/usr/lib/x86_64-linux-gnu:$SNAP/usr/lib/x86_64-linux-gnu/pulseaudio:$SNAP/usr/lib/x86_64-linux-gnu/mesa-egl:$SNAP/lib:$SNAP/usr/lib:$SNAP/lib/x86_64-linux-gnu:$SNAP/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH:$SNAP/lib:$SNAP/usr/lib:$SNAP/lib/x86_64-linux-gnu:$SNAP/usr/lib/x86_64-linux-gnu'
+    plugs:
+      - bluez
+      - browser-support
+      - gsettings
+      - home
+      - mount-observe
+      - network
+      - opengl
+      - pulseaudio
+      - unity7
+      - x11
+      - mpris
+    adapter: none
+parts:
+  app:
+    plugin: nil
+    stage-packages:
+      - libasound2
+      - libgconf2-4
+      - libnotify4
+      - libnspr4
+      - libnss3
+      - libpcre3
+      - libpulse0
+      - libxss1
+      - libxtst6
+    after:
+      - desktop-gtk3
+    build-packages:
+      - execstack
+  desktop-gtk3:
+    override-build: |-
+      set -x
+      snapcraftctl build
+      export XDG_DATA_DIRS=$SNAPCRAFT_PART_INSTALL/usr/share
+      update-mime-database $SNAPCRAFT_PART_INSTALL/usr/share/mime
+
+      for dir in $SNAPCRAFT_PART_INSTALL/usr/share/icons/*/; do
+        if [ -f $dir/index.theme ]; then
+          if which gtk-update-icon-cache-3.0 &> /dev/null; then
+            gtk-update-icon-cache-3.0 -q $dir
+          elif which gtk-update-icon-cache &> /dev/null; then
+            gtk-update-icon-cache -q $dir
+          fi
+        fi
+      done
+icon: snap/gui/icon.png
