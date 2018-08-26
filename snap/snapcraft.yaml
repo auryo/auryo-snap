@@ -13,7 +13,7 @@ parts:
     source: https://github.com/Superjo149/auryo/releases/download/v2.0.1/Auryo_2.0.1_amd64.deb
     source-type: deb
     after:
-      - desktop-gtk3
+      - desktop-gtk2
     # Correct path to icon.
     # Clear the execstack - https://forum.snapcraft.io/t/snap-and-executable-stacks/1812
     prepare: |
