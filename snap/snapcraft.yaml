@@ -13,8 +13,6 @@ parts:
     plugin: dump
     source: https://github.com/Superjo149/auryo/releases/download/v2.5.1/Auryo_2.5.1_amd64.deb
     source-type: deb
-    after:
-      - desktop-gtk3
   app:
     plugin: nil
     stage:
