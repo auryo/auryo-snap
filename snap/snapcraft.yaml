@@ -11,7 +11,7 @@ parts:
       mkdir -p "$SNAPCRAFT_PART_INSTALL/data-dir/themes" mkdir -p "$SNAPCRAFT_PART_INSTALL/data-dir/icons" mkdir -p "$SNAPCRAFT_PART_INSTALL/data-dir/sounds" mkdir $SNAPCRAFT_PART_INSTALL/gnome-platform
   app-files:
     plugin: dump
-    source: https://github.com/Superjo149/auryo/releases/download/v2.5.1/Auryo_2.5.1_amd64.deb
+    source: https://github.com/Superjo149/auryo/releases/download/v2.5.2/Auryo_2.5.2_amd64.deb
     source-type: deb
   app:
     plugin: nil
@@ -140,28 +140,36 @@ plugs:
     target: $SNAP/data-dir/sounds
     default-provider: gtk-common-themes
 name: auryo
-version: 2.5.1
+version: 2.5.2
 summary: A SoundCloud client for your desktop
 description: Listen to SoundCloud® from the comfort of your desktop. Use keyboard shortcuts to navigate through your music. Be more productive.
-architectures:
-  - amd64
+# architectures:
+#   - amd64
 apps:
   auryo:
     command: command.sh
+    extensions:
+      - gnome-3-28
     plugs:
-      - bluez
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - alsa
+      - avahi-observe
       - browser-support
+      - cups-control
       - gsettings
       - home
-      - mount-observe
       - network
       - opengl
-      - pulseaudio
-      - unity7
-      - x11
-      - mpris
+      - audio-playback
+      - screen-inhibit-control
+      - upower-observe
     slots:
       - auryo-player-mpris
+      # - dbus-settings-daemon
+      # - dbus-desktop-daemon
 
     adapter: none
     environment:
@@ -176,4 +184,12 @@ slots:
   auryo-player-mpris:
     interface: mpris
     name: auryo_player
+  # dbus-settings-daemon:
+  #   interface: dbus
+  #   bus: session
+  #   name: org.gnome.SettingsDaemon
+  # dbus-desktop-daemon:
+  #   interface: dbus
+  #   bus: session
+  #   name: org.freedesktop.DBus
 
