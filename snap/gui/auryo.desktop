@@ -7,4 +7,4 @@ Icon=${SNAP}/meta/gui/icon.png
 StartupWMClass=Auryo
 Comment=Listen to SoundCloud® from the comfort of your desktop. Use keyboard shortcuts to navigate through your music. Be more productive.
 MimeType=x-scheme-handler/auryo;
-Categories=Audio;
+Categories=Audio;Music;Player;AudioVideo;
