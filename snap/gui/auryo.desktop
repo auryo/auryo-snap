@@ -1,10 +1,8 @@
 [Desktop Entry]
-Name=Auryo
-Exec=auryo
-Terminal=false
 Type=Application
-Icon=${SNAP}/meta/gui/icon.png
-StartupWMClass=Auryo
-Comment=Listen to SoundCloud® from the comfort of your desktop. Use keyboard shortcuts to navigate through your music. Be more productive.
-MimeType=x-scheme-handler/auryo;
+Encoding=UTF-8
+Name=Auryo
+Comment=A beautiful soundcloud desktop app
+Exec=auryo
+Icon=${SNAP}/meta/gui/auryo.png
 Categories=Audio;Music;Player;AudioVideo;
