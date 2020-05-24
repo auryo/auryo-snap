@@ -1,5 +1,5 @@
 name: auryo
-version: 
+version: 2.5.4
 summary: A SoundCloud client for your desktop
 description: |
   Listen to SoundCloud® from the comfort of your desktop. Use keyboard
@@ -10,7 +10,7 @@ confinement: strict
 parts:
   auryo:
     plugin: dump
-    source: https://github.com/Superjo149/auryo/releases/download/v/Auryo__amd64.deb
+    source: https://github.com/Superjo149/auryo/releases/download/v2.5.4/Auryo_2.5.4_amd64.deb
     source-type: deb
     after:
       - desktop-gtk3
